@@ -4,12 +4,43 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
   </head>
+  <style>
+  body{
+    background-image: url("http://images.nationalgeographic.com/wpf/media-live/photos/000/857/cache/landscape-voltino-italy_85708_990x742.jpg");
+    text-align: center;
+    background-size: 100%;
+  }
+
+  div {
+    margin-bottom: 3px;
+    background-color: white;
+    border: 1px solid gray;
+    width: 50%;
+    float: middle;
+    margin-left: auto;
+    margin-right: auto;
+    }
+  </style>
+
   <body>
+  <h1 style="color:white"> Twittler Feed</h1>
+  <hr>
+  <a id="refreshLink" href="http://www.google.com">Show new tweets</a>
+
     <script>
+
 
       $(document).ready(function(){
         var $body = $('body');
-        $body.html('');
+        //Function below clears the body of the html
+        //$body.html('');
+
+          var a = document.getElementById("refreshLink");
+          a.onclick = function(){
+            newTweets();
+            return false;
+          };
+
 
 
         var newTweets = function(){
@@ -18,7 +49,7 @@
             var tweet = streams.home[index];
             console.log(streams.home[index]);
             var $tweet = $('<div></div>');
-            $tweet.text('@' + tweet.user + ': ' + tweet.message);
+            $tweet.text(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
             $tweet.appendTo($body);
             index -= 1;
           }
@@ -28,5 +59,6 @@
       });
 
     </script>
+
   </body>
 </html>
