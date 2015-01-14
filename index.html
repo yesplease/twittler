@@ -50,7 +50,7 @@
   <h1 style="color:white"> Twittler Feed</h1>
 
   <hr>
-  <a id="refreshLink" href="http://www.google.com">Show new tweets</a>
+  <a id="refreshLink" >Show new tweets</a>
     <div id = "holder"></div>
     <script>
 
@@ -63,23 +63,24 @@
           var a = document.getElementById("refreshLink");
           a.onclick = function(){
             newTweets();
-            return false;
+           //return false;
           };
 
 
 
         var newTweets = function(){
+          $holder.html('');
           var index = streams.home.length - 1;
           while(index >= 0){
             var tweet = streams.home[index];
             var tweetTime = streams.home[index].created_at;
             var tweetMessage = streams.home[index].message;
-            console.log(streams.home[index]);
+            //console.log(streams.home[index]);
             var user = streams.home[index].user;
             //console.log(user);
             var $tweet = $('<div class="tweet"></div>');
-            $tweet.append('<a class = "tweet-user">' + '@' + user + '<a>');
-            $tweet.append('<p class="tweet-time">' + tweetTime + '</p>')
+            $tweet.append('<a class = "tweet-user">' + user + '<a>');
+            $tweet.append('<p class="tweet-time">' + tweetTime + '</p>');
             // var $tweetHeader = $('<div class="tweet-header"></div>');
             // $tweetHeader.append('<a type="button">'+'@' + tweet.user+ "</a>" + " " + "<br>" +tweetTime);
             // $tweet.append($tweetHeader);
@@ -90,6 +91,37 @@
           }
         };
       newTweets();  
+      
+      $('.tweet-user').on('click', function(){
+        //alert("working!");
+        $holder.html('');
+        var clickedName = $(this).text();
+        var singleUserObject = streams.users[clickedName];
+        console.log(singleUserObject);
+
+        var index = singleUserObject.length - 1;
+            while(index >= 0){
+            var tweet = streams.home[index];
+            var tweetTime = singleUserObject[index].created_at;
+            var tweetMessage = singleUserObject[index].message;
+            //console.log(streams.home[index]);
+            var user = singleUserObject[index].user;
+            //console.log(user);
+            var $tweet = $('<div class="tweet"></div>');
+            $tweet.append('<a class = "tweet-user">' + user + '<a>');
+            $tweet.append('<p class="tweet-time">' + tweetTime + '</p>');
+            // var $tweetHeader = $('<div class="tweet-header"></div>');
+            // $tweetHeader.append('<a type="button">'+'@' + tweet.user+ "</a>" + " " + "<br>" +tweetTime);
+            // $tweet.append($tweetHeader);
+            $tweet.append('<p class="tweet-text">' + tweetMessage + '</p>');
+            //$tweet.text(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
+            $tweet.appendTo($holder);
+            index -= 1;
+          }
+      });
+
+
+
       //setInterval(newTweets, 8000);
       });
 
