@@ -32,6 +32,15 @@
 
     p.tweet-text {
     color: #003366;
+    }
+
+    p.tweet-time {
+     font-style: italic;
+
+    }
+
+    a.tweet-user {
+    font-weight: bold;
 
     }
 
@@ -69,9 +78,11 @@
             var user = streams.home[index].user;
             //console.log(user);
             var $tweet = $('<div class="tweet"></div>');
-            var $tweetHeader = $('<div class="tweet-header"></div>');
-            $tweetHeader.append('<a type="button">'+'@' + tweet.user+ "</a>" + " "+tweetTime);
-            $tweet.append($tweetHeader);
+            $tweet.append('<a class = "tweet-user">' + '@' + user + '<a>');
+            $tweet.append('<p class="tweet-time">' + tweetTime + '</p>')
+            // var $tweetHeader = $('<div class="tweet-header"></div>');
+            // $tweetHeader.append('<a type="button">'+'@' + tweet.user+ "</a>" + " " + "<br>" +tweetTime);
+            // $tweet.append($tweetHeader);
             $tweet.append('<p class="tweet-text">' + tweetMessage + '</p>');
             //$tweet.text(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
             $tweet.appendTo($holder);
