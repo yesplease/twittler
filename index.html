@@ -75,22 +75,22 @@
             var tweet = streams.home[index];
             var tweetTime = streams.home[index].created_at;
             var tweetMessage = streams.home[index].message;
-            //console.log(streams.home[index]);
             var user = streams.home[index].user;
-            //console.log(user);
             var $tweet = $('<div class="tweet"></div>');
             $tweet.append('<a class = "tweet-user">' + user + '<a>');
             $tweet.append('<p class="tweet-time">' + tweetTime + '</p>');
-            // var $tweetHeader = $('<div class="tweet-header"></div>');
-            // $tweetHeader.append('<a type="button">'+'@' + tweet.user+ "</a>" + " " + "<br>" +tweetTime);
-            // $tweet.append($tweetHeader);
             $tweet.append('<p class="tweet-text">' + tweetMessage + '</p>');
-            //$tweet.text(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
             $tweet.appendTo($holder);
             index -= 1;
           }
         };
+
+
+
       newTweets();  
+      
+
+
       
       $('.tweet-user').on('click', function(){
         //alert("working!");
@@ -104,25 +104,15 @@
             var tweet = streams.home[index];
             var tweetTime = singleUserObject[index].created_at;
             var tweetMessage = singleUserObject[index].message;
-            //console.log(streams.home[index]);
             var user = singleUserObject[index].user;
-            //console.log(user);
             var $tweet = $('<div class="tweet"></div>');
             $tweet.append('<a class = "tweet-user">' + user + '<a>');
             $tweet.append('<p class="tweet-time">' + tweetTime + '</p>');
-            // var $tweetHeader = $('<div class="tweet-header"></div>');
-            // $tweetHeader.append('<a type="button">'+'@' + tweet.user+ "</a>" + " " + "<br>" +tweetTime);
-            // $tweet.append($tweetHeader);
             $tweet.append('<p class="tweet-text">' + tweetMessage + '</p>');
-            //$tweet.text(tweet.created_at + ' @' + tweet.user + ': ' + tweet.message);
             $tweet.appendTo($holder);
             index -= 1;
           }
       });
-
-
-
-      //setInterval(newTweets, 8000);
       });
 
     </script>
