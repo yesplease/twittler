@@ -53,8 +53,6 @@
   <a id="refreshLink" >Show new tweets</a>
     <div id = "holder"></div>
     <script>
-
-
       $(document).ready(function(){
         var $holder = $('#holder');
         //Function below clears the body of the html
@@ -65,8 +63,6 @@
             newTweets();
            //return false;
           };
-
-
 
         var newTweets = function(){
           $holder.html('');
@@ -85,19 +81,15 @@
           }
         };
 
-
-
       newTweets();  
       
 
-
-      
-      $('.tweet-user').on('click', function(){
+      $('.tweet').on('click', function(){
         //alert("working!");
         $holder.html('');
-        var clickedName = $(this).text();
+        var clickedName = $(this).closest('.tweet-user').text();
         var singleUserObject = streams.users[clickedName];
-        console.log(singleUserObject);
+        console.log(clickedName);
 
         var index = singleUserObject.length - 1;
             while(index >= 0){
@@ -111,7 +103,7 @@
             $tweet.append('<p class="tweet-text">' + tweetMessage + '</p>');
             $tweet.appendTo($holder);
             index -= 1;
-          }
+          };
       });
       });
 
